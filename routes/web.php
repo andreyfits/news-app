@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Blog\CategoryController;
+use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\TagController;
+use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get("/blog/post/{id}", [PostController::class, 'show'])->name('post');
+Route::get("/blog/category/{id}", [CategoryController::class, 'show'])->name('category');
+Route::get("/blog/tag/{id}", [TagController::class, 'show'])->name('tag');
