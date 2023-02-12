@@ -20,14 +20,23 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::active()->findOrFail($id);
-        $categories = Category::latest()->get();
-        $tags = Tag::latest()->get();
+        $post = Post::with('user')
+            ->where('active', 1)
+            ->findOrFail($id);
+        $post_categories = Category::with('posts')
+            ->where('active', 1)
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
+            ->latest()
+            ->get();
+        $tags = Tag::has('posts')
+            ->latest()
+            ->get();
 
         ++$post->views;
         $post->update();
 
-        return view("blog.post", compact('post', 'categories', 'tags'));
-
+        return view("blog.post", compact('post', 'post_categories', 'tags'));
     }
 }
