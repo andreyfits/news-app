@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <h3>{{ $tag->name }}</h3>
                 <hr>
                 <div class="row">
@@ -17,10 +17,7 @@
                                          alt="..."/>
                                 </a>
                                 <div class="card-body">
-                                    Posted by
-                                    <a href="#">
-                                        {{ $post->user->name }}
-                                    </a>
+                                    Posted by <a href="#">{{ $post->user->name }}</a>
                                     <div class="small text-muted">{{ $post->created_at->diffForHumans() }}</div>
                                     <div class="small text-muted"><i class="bi bi-eye"></i> {{ $post->views }}</div>
                                     <h2 class="card-title h4">{{ $post->title }}</h2>
@@ -30,7 +27,53 @@
                         </div>
                     @endforeach
                 </div>
-                {{ $posts->links()}}
+                {{--{{ $posts->links()}}--}}
+            </div>
+            <div class="col-lg-4">
+                {{--                <!-- Search widget-->--}}
+                {{--                <div class="card mb-4">--}}
+                {{--                    <div class="card-header">Search</div>--}}
+                {{--                    <div class="card-body">--}}
+                {{--                        <div class="input-group">--}}
+                {{--                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />--}}
+                {{--                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <div class="card mb-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($post_categories as $post_category)
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a href="{{ route('category', ['id' => $post_category]) }}">
+                                                {{ $post_category->name }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Tags</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($tags as $tag)
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -37,12 +37,10 @@
                                          alt="..."/>
                                 </a>
                                 <div class="card-body">
-                                    Posted by
-                                    <a href="#">
-                                        {{ $recent_post->user->name }}
-                                    </a>
+                                    Posted by <a href="#">{{ $recent_post->user->name }}</a>
                                     <div class="small text-muted">{{ $recent_post->created_at->diffForHumans() }}</div>
-                                    <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}</div>
+                                    <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}
+                                    </div>
                                     <h2 class="card-title h4">{{ $recent_post->title }}</h2>
                                     <p class="card-text">{!! Str::limit($recent_post->content, 200) !!}</p>
                                     <a class="btn btn-primary" href="{{ url('/blog/post/' . $recent_post->id) }}">Read
@@ -52,6 +50,7 @@
                         </div>
                     @endforeach
                 </div>
+{{--                    {{ $recent_posts->links() }}--}}
                 <!-- Pagination-->
                 {{--                <nav aria-label="Pagination">--}}
                 {{--                    <hr class="my-0"/>--}}
@@ -85,13 +84,29 @@
                     <div class="card-header">Categories</div>
                     <div class="card-body">
                         <div class="row">
-                            @foreach($categories as $category)
+                            @foreach($post_categories as $post_category)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['id' => $category]) }}">
-                                                {{ $category->name }}
+                                            <a href="{{ route('category', ['id' => $post_category]) }}">
+                                                {{ $post_category->name }}
                                             </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Tags</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($tags as $tag)
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
                                         </li>
                                     </ul>
                                 </div>

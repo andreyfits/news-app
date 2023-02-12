@@ -19,13 +19,15 @@
                         <!-- Post tags-->
                         @if($post->tags->count())
                             @foreach($post->tags as $tag)
-                                <a class="badge bg-secondary text-decoration-none link-light" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
+                                <a class="badge bg-secondary text-decoration-none link-light"
+                                   href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
                             @endforeach
                         @endif
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset($post->featured_image->large) }}"
-                                              alt="..."/></figure>
+                    <figure class="mb-4">
+                        <img class="img-fluid rounded" src="{{ asset($post->featured_image->large) }}" alt="..."/>
+                    </figure>
                     <!-- Post content-->
                     <section class="mb-5">
                         <p class="fs-5 mb-4">
@@ -93,13 +95,29 @@
                     <div class="card-header">Categories</div>
                     <div class="card-body">
                         <div class="row">
-                            @foreach($categories as $category)
+                            @foreach($post_categories as $post_category)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['id' => $category]) }}">
-                                                {{ $category->name }}
+                                            <a href="{{ route('category', ['id' => $post_category]) }}">
+                                                {{ $post_category->name }}
                                             </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Tags</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($tags as $tag)
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
                                         </li>
                                     </ul>
                                 </div>
