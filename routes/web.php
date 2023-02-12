@@ -22,3 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get("/blog/post/{id}", [PostController::class, 'show'])->name('post');
 Route::get("/blog/category/{id}", [CategoryController::class, 'show'])->name('category');
 Route::get("/blog/tag/{id}", [TagController::class, 'show'])->name('tag');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function () {
+    Route::get('/', 'MainController@index')->name('admin.index');
+});
