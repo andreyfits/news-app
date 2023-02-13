@@ -48,7 +48,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['slug' => $post_category->slug]) }}">
+                                            <a href="{{ route('category', $post_category->slug) }}">
                                                 {{ $post_category->title }}
                                             </a>
                                         </li>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
+                                            <a href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>

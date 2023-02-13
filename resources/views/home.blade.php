@@ -20,8 +20,9 @@
                             <div class="small text-muted"><i class="bi bi-eye"></i> {{ $featured_post->views }}</div>
                             <h2 class="card-title">{{ $featured_post->title }}</h2>
                             <p class="card-text">{!! Str::limit($featured_post->content, 200) !!}</p>
-                            <a class="btn btn-primary" href="{{ route('post', ['slug' => $featured_post->slug]) }}">Read more
-                                →</a>
+                            <a class="btn btn-primary" href="{{ route('post', ['slug' => $featured_post->slug]) }}">
+                                Read more →
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -43,7 +44,8 @@
                                     </div>
                                     <h2 class="card-title h4">{{ $recent_post->title }}</h2>
                                     <p class="card-text">{!! Str::limit($recent_post->content, 200) !!}</p>
-                                    <a class="btn btn-primary" href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read
+                                    <a class="btn btn-primary"
+                                       href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read
                                         more →</a>
                                 </div>
                             </div>
@@ -88,7 +90,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['slug' => $post_category->slug]) }}">
+                                            <a href="{{ route('category', $post_category->slug) }}">
                                                 {{ $post_category->title }}
                                             </a>
                                         </li>
@@ -106,7 +108,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
+                                            <a href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>
