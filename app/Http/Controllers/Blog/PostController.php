@@ -15,22 +15,26 @@ class PostController extends Controller
     /**
      * Display single post.
      *
-     * @param  $id
+     * @param  $slug
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show($slug)
     {
         $post = Post::with('user')
+            ->where('slug', $slug)
             ->where('active', 1)
-            ->findOrFail($id);
+            ->orderBy('created_at', 'desc')
+            ->firstOrFail();
         $post_categories = Category::with('posts')
             ->where('active', 1)
             ->whereHas('posts', function ($query) {
                 $query->where('active', 1);
             })
+            ->orderBy('title')
             ->latest()
             ->get();
         $tags = Tag::has('posts')
+            ->orderBy('title')
             ->latest()
             ->get();
 

@@ -14,26 +14,30 @@ class CategoryController extends Controller
     /**
      * Display categories.
      *
-     * @param  $id
+     * @param  $slug
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show($slug)
     {
         $category = Category::with('posts')
-            ->where('id', $id)
+            ->where('slug', $slug)
+            ->orderBy('title')
             ->firstOrFail();
         $post_categories = Category::with('posts')
             ->where('active', 1)
             ->whereHas('posts', function ($query) {
                 $query->where('active', 1);
             })
+            ->orderBy('title')
             ->latest()
             ->get();
         $posts = $category->posts()
             ->with('user')
             ->where('posts.active', 1)
+            ->orderBy('created_at', 'desc')
             ->paginate(4);
         $tags = Tag::has('posts')
+            ->orderBy('title')
             ->get();
 
         return view('blog.category', compact('category', 'posts', 'tags', 'post_categories'));

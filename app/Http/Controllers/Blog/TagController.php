@@ -14,25 +14,29 @@ class TagController extends Controller
     /**
      * Display tags.
      *
-     * @param  $id
+     * @param  $slug
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show($slug)
     {
         $tag = Tag::with('posts')
-            ->where('id', $id)
+            ->where('slug', $slug)
+            ->orderBy('title')
             ->firstOrFail();
         $tags = Tag::has('posts')
+            ->orderBy('title')
             ->get();
         $posts = $tag->posts()
             ->with('user')
             ->where('posts.active', 1)
+            ->orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::with('posts')
             ->where('active', 1)
             ->whereHas('posts', function ($query) {
                 $query->where('active', 1);
             })
+            ->orderBy('title')
             ->latest()
             ->get();
 
