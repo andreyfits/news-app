@@ -9,7 +9,8 @@ mix.scripts([
     'resources/assets/admin/plugins/jquery/jquery.min.js',
     'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'resources/assets/admin/js/adminlte.min.js',
-    'resources/assets/admin/js/demo.js'
+    'resources/assets/admin/js/demo.js',
+    'resources/assets/admin/js/custom-js.js'
 ], 'public/assets/admin/js/admin.js');
 
 mix.copyDirectory('resources/assets/admin/img', 'public/assets/admin/img');
