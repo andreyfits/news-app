@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Services\ImagePath;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = ['title', 'slug', 'content', 'featured_image', 'featured_post', 'active', 'category_id', 'user_id'];
 
@@ -45,5 +46,19 @@ class Post extends Model
     public function scopeActive(Builder $query): void
     {
         $query->where('active', 1);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
