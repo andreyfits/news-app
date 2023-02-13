@@ -20,7 +20,7 @@
                         @if($post->tags->count())
                             @foreach($post->tags as $tag)
                                 <a class="badge bg-secondary text-decoration-none link-light"
-                                   href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
+                                   href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
                             @endforeach
                         @endif
                     </header>
@@ -99,8 +99,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['id' => $post_category]) }}">
-                                                {{ $post_category->name }}
+                                            <a href="{{ route('category', ['slug' => $post_category->slug]) }}">
+                                                {{ $post_category->title }}
                                             </a>
                                         </li>
                                     </ul>
@@ -117,7 +117,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
+                                            <a href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>

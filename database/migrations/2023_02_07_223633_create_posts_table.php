@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
-            $table->string('slug', 100)->unique();
+            $table->string('title', 200);
+            $table->string('slug')->unique();
             $table->text('content');
             $table->string('featured_image');
             $table->tinyInteger('featured_post')->default(0);

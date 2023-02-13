@@ -9,7 +9,7 @@
                 @foreach($featured_posts as $featured_post)
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="{{ url('/blog/post/' . $featured_post->id) }}">
+                        <a href="{{ route('post', ['slug' => $featured_post->slug]) }}">
                             <img class="card-img-top"
                                  src="{{ asset($featured_post->featured_image->medium) }}"
                                  alt="..."/>
@@ -20,7 +20,7 @@
                             <div class="small text-muted"><i class="bi bi-eye"></i> {{ $featured_post->views }}</div>
                             <h2 class="card-title">{{ $featured_post->title }}</h2>
                             <p class="card-text">{!! Str::limit($featured_post->content, 200) !!}</p>
-                            <a class="btn btn-primary" href="{{ url('blog/post/' . $featured_post->id) }}">Read more
+                            <a class="btn btn-primary" href="{{ route('post', ['slug' => $featured_post->slug]) }}">Read more
                                 →</a>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
-                                <a href="{{ url('/blog/post/' . $recent_post->id) }}">
+                                <a href="{{ route('post', ['slug' => $recent_post->slug]) }}">
                                     <img class="card-img-top"
                                          src="{{ asset($recent_post->featured_image->thumbnail) }}"
                                          alt="..."/>
@@ -43,7 +43,7 @@
                                     </div>
                                     <h2 class="card-title h4">{{ $recent_post->title }}</h2>
                                     <p class="card-text">{!! Str::limit($recent_post->content, 200) !!}</p>
-                                    <a class="btn btn-primary" href="{{ url('/blog/post/' . $recent_post->id) }}">Read
+                                    <a class="btn btn-primary" href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read
                                         more →</a>
                                 </div>
                             </div>
@@ -88,8 +88,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['id' => $post_category]) }}">
-                                                {{ $post_category->name }}
+                                            <a href="{{ route('category', ['slug' => $post_category->slug]) }}">
+                                                {{ $post_category->title }}
                                             </a>
                                         </li>
                                     </ul>
@@ -106,7 +106,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
+                                            <a href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>

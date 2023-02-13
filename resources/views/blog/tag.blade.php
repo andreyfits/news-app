@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h3>{{ $tag->name }}</h3>
+                <h3>{{ $tag->title }}</h3>
                 <hr>
                 <div class="row">
                     @foreach($posts as $post)
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
-                                <a href="{{ route('post',['id' => $post->id]) }}">
+                                <a href="{{ route('post', ['slug' => $post->slug]) }}">
                                     <img class="card-img-top"
                                          src="{{ asset($post->featured_image->thumbnail) }}"
                                          alt="..."/>
@@ -48,8 +48,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', ['id' => $post_category]) }}">
-                                                {{ $post_category->name }}
+                                            <a href="{{ route('category', ['slug' => $post_category->slug]) }}">
+                                                {{ $post_category->title }}
                                             </a>
                                         </li>
                                     </ul>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', ['id' => $tag]) }}">{{ $tag->name }}</a>
+                                            <a href="{{ route('tag', ['slug' => $tag->slug]) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>
