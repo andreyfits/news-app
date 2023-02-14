@@ -47,7 +47,7 @@
                         <li class="nav-item">
                             <a href="{{ route('categories.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>New</p>
+                                <p>Add new</p>
                             </a>
                         </li>
                     </ul>

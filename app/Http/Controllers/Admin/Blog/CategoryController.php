@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategory;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostsModel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -29,22 +31,24 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCategory $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request): RedirectResponse
     {
-        //
+        Category::create($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'New Category created Successfully!');
     }
 
 
@@ -63,7 +67,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

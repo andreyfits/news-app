@@ -32,6 +32,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+                                @include('includes.admin.alerts')
                                 <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Add new</a>
                                 @if (count($categories))
                                     <div class="table-responsive">
@@ -51,8 +52,12 @@
                                                     <td>{{ $category->id }}</td>
                                                     <td>{{ $category->title }}</td>
                                                     <td>{{ $category->slug }}</td>
-                                                    <td>@if($category->active === 1) <span class="badge bg-success">Active</span>
-                                                        @else <span class="badge bg-danger">Deactivated</span> @endif</td>
+                                                    <td>@if($category->active === 1)
+                                                            <span class="badge bg-success">Active</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Deactivated</span>
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         <form
                                                             action="{{ route('categories.destroy', $category->id) }}"
