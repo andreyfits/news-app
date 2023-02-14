@@ -11,7 +11,7 @@ class Tag extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['title'];
 
     public function posts(): BelongsToMany
     {
