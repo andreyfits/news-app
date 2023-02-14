@@ -6,15 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use App\Models\Category;
-use App\Models\Post;
-use App\Models\PostsModel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
 {
@@ -54,7 +49,6 @@ class CategoryController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -63,7 +57,7 @@ class CategoryController extends Controller
      */
     public function edit(int $id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
 
         return view('admin.categories.edit', compact('category'));
     }
@@ -75,7 +69,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(UpdateCategory $request, $id): RedirectResponse
+    public function update(UpdateCategory $request, int $id): RedirectResponse
     {
         $category = Category::findOrFail($id);
         $category->update($request->all());
@@ -86,11 +80,19 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        $category = Category::findOrFail($id);
+
+        if ($category->posts()->count()) {
+            return redirect()->route('categories.index')->with('error', 'Error! The category has entries');
+        }
+
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('info', 'Category deleted Successfully!');
     }
 }

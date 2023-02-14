@@ -19,4 +19,9 @@
         <button data-dismiss="alert" class="close">&times;</button>
         {{ Session::get('info') }}
     </div>
+@elseif(Session::has('error'))
+    <div class="alert alert-danger">
+        <button data-dismiss="alert" class="close">&times;</button>
+        {{ Session::get('error') }}
+    </div>
 @endif
