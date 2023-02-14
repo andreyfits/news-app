@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 200);
             $table->string('slug')->unique();
             $table->text('content');
-            $table->string('featured_image');
+            $table->string('featured_image')->nullable();
             $table->tinyInteger('featured_post')->default(0);
             $table->boolean('active')->default(0);
             $table->integer('category_id')->unsigned();
