@@ -14,8 +14,7 @@
                         <!-- Post title-->
                         <h1 class="fw-bolder mb-1">{{ $post->title }}</h1>
                         <!-- Post meta content-->
-                        <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }}
-                            by {{ $post->user->name }}</div>
+                        <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }}</div>
                         <!-- Post tags-->
                         @if($post->tags->count())
                             @foreach($post->tags as $tag)
@@ -26,7 +25,7 @@
                     </header>
                     <!-- Preview image figure-->
                     <figure class="mb-4">
-                        <img class="img-fluid rounded" src="{{ asset($post->featured_image->large) }}" alt="..."/>
+                        <img class="img-fluid rounded" src="{{ asset($post->image) }}" alt="..."/>
                     </figure>
                     <!-- Post content-->
                     <section class="mb-5">

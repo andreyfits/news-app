@@ -6,26 +6,6 @@
         <div class="row">
             <!-- Blog entries-->
             <div class="col-lg-8">
-                @foreach($featured_posts as $featured_post)
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <a href="{{ route('post', ['slug' => $featured_post->slug]) }}">
-                            <img class="card-img-top"
-                                 src="{{ asset($featured_post->featured_image->medium) }}"
-                                 alt="..."/>
-                        </a>
-                        <div class="card-body">
-                            Posted by <a href="#">{{ $featured_post->user->name }}</a>
-                            <div class="small text-muted">{{ $featured_post->created_at->diffForHumans() }}</div>
-                            <div class="small text-muted"><i class="bi bi-eye"></i> {{ $featured_post->views }}</div>
-                            <h2 class="card-title">{{ $featured_post->title }}</h2>
-                            <p class="card-text">{!! Str::limit($featured_post->content, 200) !!}</p>
-                            <a class="btn btn-primary" href="{{ route('post', ['slug' => $featured_post->slug]) }}">
-                                Read more →
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
                     @foreach($recent_posts as $recent_post)
@@ -34,11 +14,10 @@
                             <div class="card mb-4">
                                 <a href="{{ route('post', ['slug' => $recent_post->slug]) }}">
                                     <img class="card-img-top"
-                                         src="{{ asset($recent_post->featured_image->thumbnail) }}"
+                                         src="{{ asset($recent_post->image) }}"
                                          alt="..."/>
                                 </a>
                                 <div class="card-body">
-                                    Posted by <a href="#">{{ $recent_post->user->name }}</a>
                                     <div class="small text-muted">{{ $recent_post->created_at->diffForHumans() }}</div>
                                     <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}
                                     </div>
@@ -52,21 +31,7 @@
                         </div>
                     @endforeach
                 </div>
-{{--                    {{ $recent_posts->links() }}--}}
-                <!-- Pagination-->
-                {{--                <nav aria-label="Pagination">--}}
-                {{--                    <hr class="my-0"/>--}}
-                {{--                    <ul class="pagination justify-content-center my-4">--}}
-                {{--                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>--}}
-                {{--                        </li>--}}
-                {{--                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>--}}
-                {{--                        <li class="page-item"><a class="page-link" href="#!">2</a></li>--}}
-                {{--                        <li class="page-item"><a class="page-link" href="#!">3</a></li>--}}
-                {{--                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>--}}
-                {{--                        <li class="page-item"><a class="page-link" href="#!">15</a></li>--}}
-                {{--                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>--}}
-                {{--                    </ul>--}}
-                {{--                </nav>--}}
+                {{ $recent_posts->links() }}
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">

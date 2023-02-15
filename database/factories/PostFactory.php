@@ -30,11 +30,8 @@ class PostFactory extends Factory
             'title' => $this->faker->text(),
             'slug' => $this->faker->slug,
             'content' => $this->faker->paragraph(8),
-            'featured_image' => $this->faker->imageUrl(850,350),
-            'featured_post' => $this->faker->boolean,
-            'active' => $this->faker->boolean,
+            'image' => $this->faker->imageUrl(850,350),
             'category_id' => Category::factory(),
-            'user_id' => User::factory(),
         ];
     }
 }

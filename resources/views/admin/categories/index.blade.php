@@ -42,7 +42,6 @@
                                                 <th style="width: 30px">#</th>
                                                 <th>Title</th>
                                                 <th>Slug</th>
-                                                <th>Active</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -52,12 +51,6 @@
                                                     <td>{{ $category->id }}</td>
                                                     <td>{{ $category->title }}</td>
                                                     <td>{{ $category->slug }}</td>
-                                                    <td>@if($category->active === 1)
-                                                            <span class="badge bg-success">Active</span>
-                                                        @else
-                                                            <span class="badge bg-danger">Deactivated</span>
-                                                        @endif
-                                                    </td>
                                                     <td>
                                                         <form
                                                             action="{{ route('categories.destroy', $category->id) }}"

@@ -20,7 +20,6 @@ class CategoryFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'slug' => $this->faker->slug,
-            'active' => $this->faker->boolean(),
         ];
     }
 }

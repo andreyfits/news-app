@@ -24,10 +24,5 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        User::factory()
-            ->count(5)
-            ->has(Post::factory()->count(5), 'posts')
-            ->create();
     }
 }

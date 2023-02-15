@@ -13,11 +13,10 @@
                             <div class="card mb-4">
                                 <a href="{{ route('post', ['slug' => $post->slug]) }}">
                                     <img class="card-img-top"
-                                         src="{{ asset($post->featured_image->thumbnail) }}"
+                                         src="{{ asset($post->image) }}"
                                          alt="..."/>
                                 </a>
                                 <div class="card-body">
-                                    Posted by <a href="#">{{ $post->user->name }}</a>
                                     <div class="small text-muted">{{ $post->created_at->diffForHumans() }}</div>
                                     <div class="small text-muted"><i class="bi bi-eye"></i> {{ $post->views }}</div>
                                     <h2 class="card-title h4">{{ $post->title }}</h2>
@@ -27,7 +26,7 @@
                         </div>
                     @endforeach
                 </div>
-                {{--{{ $posts->links()}}--}}
+                {{ $posts->links()}}
             </div>
             <div class="col-lg-4">
                 {{--                <!-- Search widget-->--}}

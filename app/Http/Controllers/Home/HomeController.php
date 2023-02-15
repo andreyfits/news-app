@@ -20,27 +20,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recent_posts = Post::with('user')
-            ->orderBy('created_at', 'desc')
-            ->where('active', 1)
+        $recent_posts = Post::orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::with('posts')
-            ->where('active', 1)
-            ->whereHas('posts', function ($query) {
-                $query->where('active', 1);
-            })
             ->orderBy('title')
             ->latest()
-            ->get();
-        $featured_posts = Post::with('user')
-            ->where('featured_post', 1)
-            ->where('active', 1)
-            ->orderBy('created_at', 'desc')
             ->get();
         $tags = Tag::has('posts')
             ->orderBy('title')
             ->get();
 
-        return view('home', compact('recent_posts', 'post_categories', 'featured_posts', 'featured_posts', 'tags'));
+        return view('home', compact('recent_posts', 'post_categories', 'tags'));
     }
 }

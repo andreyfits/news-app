@@ -27,15 +27,9 @@ class TagController extends Controller
             ->orderBy('title')
             ->get();
         $posts = $tag->posts()
-            ->with('user')
-            ->where('posts.active', 1)
             ->orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::with('posts')
-            ->where('active', 1)
-            ->whereHas('posts', function ($query) {
-                $query->where('active', 1);
-            })
             ->orderBy('title')
             ->latest()
             ->get();

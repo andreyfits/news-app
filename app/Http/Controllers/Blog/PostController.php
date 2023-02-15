@@ -20,16 +20,10 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::with('user')
-            ->where('slug', $slug)
-            ->where('active', 1)
+        $post = Post::where('slug', $slug)
             ->orderBy('created_at', 'desc')
             ->firstOrFail();
         $post_categories = Category::with('posts')
-            ->where('active', 1)
-            ->whereHas('posts', function ($query) {
-                $query->where('active', 1);
-            })
             ->orderBy('title')
             ->latest()
             ->get();
