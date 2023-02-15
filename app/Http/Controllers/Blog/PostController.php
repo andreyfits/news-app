@@ -23,7 +23,7 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)
             ->orderBy('created_at', 'desc')
             ->firstOrFail();
-        $post_categories = Category::with('posts')
+        $post_categories = Category::has('posts')
             ->orderBy('title')
             ->latest()
             ->get();

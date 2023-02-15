@@ -23,7 +23,7 @@ class CategoryController extends Controller
             ->where('slug', $slug)
             ->orderBy('title')
             ->firstOrFail();
-        $post_categories = Category::with('posts')
+        $post_categories = Category::has('posts')
             ->orderBy('title')
             ->latest()
             ->get();

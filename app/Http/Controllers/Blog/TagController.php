@@ -29,7 +29,7 @@ class TagController extends Controller
         $posts = $tag->posts()
             ->orderBy('created_at', 'desc')
             ->paginate(4);
-        $post_categories = Category::with('posts')
+        $post_categories = Category::has('posts')
             ->orderBy('title')
             ->latest()
             ->get();
