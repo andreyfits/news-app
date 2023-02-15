@@ -6,3 +6,5 @@ $('.nav-sidebar a').each(function () {
         $(this).closest('.has-treeview').addClass('menu-open');
     }
 });
+
+$('.select2').select2()
