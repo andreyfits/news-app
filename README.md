@@ -54,11 +54,20 @@ $ php artisan db:seed --class=PostSeeder
 $ php artisan db:seed --class=TagSeeder
 ```
 
-6. Finally start the development server:
+6. Start the development server:
 
 ```sh
 $ php artisan serve
 ```
 
-7. Page for the management blog post:
+7. Install Node.js and after that install necessary packages for frontend
+
+```
+$ npm install
+```
+```
+$ npx mix
+```
+
+8. Page for the management blog post:
  - /admin
