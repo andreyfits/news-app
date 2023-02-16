@@ -11,6 +11,14 @@ class Tag extends Model
 {
     use HasFactory, Sluggable;
 
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'tags';
+
     protected $fillable = ['title'];
 
     public function posts(): BelongsToMany

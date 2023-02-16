@@ -12,6 +12,13 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'posts';
+
     protected $fillable = [
         'title',
         'slug',

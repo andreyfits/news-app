@@ -11,6 +11,13 @@ class Category extends Model
 {
     use HasFactory, Sluggable;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'categories';
+
     protected $fillable = ['title'];
 
     public function posts(): HasMany
