@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTag;
-use App\Http\Requests\UpdateTag;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -41,10 +41,10 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreTag $request
+     * @param StoreTagRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreTag $request): RedirectResponse
+    public function store(StoreTagRequest $request): RedirectResponse
     {
         Tag::create($request->all());
 
@@ -67,11 +67,11 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateTag $request
+     * @param UpdateTagRequest $request
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(UpdateTag $request, int $id): RedirectResponse
+    public function update(UpdateTagRequest $request, int $id): RedirectResponse
     {
         $tag = Tag::findOrFail($id);
         $tag->update($request->all());

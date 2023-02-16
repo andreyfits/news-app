@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePost;
-use App\Http\Requests\UpdatePost;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -45,15 +45,12 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StorePost $request
+     * @param StorePostRequest $request
      * @return RedirectResponse
      */
-    public function store(StorePost $request): RedirectResponse
+    public function store(StorePostRequest $request): RedirectResponse
     {
         $data = $request->all();
-
-        $data['user_id'] = 1;
-
 
         if ($data['image']) {
             $image_path = uploadImage($data['image'], 'images/blog');
@@ -89,7 +86,7 @@ class PostController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(UpdatePost $request, int $id): RedirectResponse
+    public function update(UpdatePostRequest $request, int $id): RedirectResponse
     {
         $post = Post::find($id);
         $data = $request->all();

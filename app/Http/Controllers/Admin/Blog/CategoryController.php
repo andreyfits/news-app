@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategory;
-use App\Http\Requests\UpdateCategory;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -38,10 +38,10 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreCategory $request
+     * @param StoreCategoryRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreCategory $request): RedirectResponse
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
         Category::create($request->all());
 
@@ -65,11 +65,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateCategory $request
+     * @param UpdateCategoryRequest $request
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(UpdateCategory $request, int $id): RedirectResponse
+    public function update(UpdateCategoryRequest $request, int $id): RedirectResponse
     {
         $category = Category::findOrFail($id);
         $category->update($request->all());
