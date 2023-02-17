@@ -26,8 +26,8 @@ Route::get("/article/{slug}", [PostController::class, 'show'])->name('post');
 Route::get("/category/{slug}", [CategoryController::class, 'show'])->name('category');
 Route::get("/tag/{slug}", [TagController::class, 'show'])->name('tag');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function () {
-    Route::get('/', 'MainController@index')->name('admin.index');
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'admin'], function () {
+    Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('/categories', 'Blog\CategoryController');
     Route::resource('/tags', 'Blog\TagController');
     Route::resource('/posts', 'Blog\PostController');

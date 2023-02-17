@@ -44,6 +44,13 @@ class LoginController extends Controller
                 ->withErrors(trans('auth.failed'));
         }
 
+        if (Auth::attempt($credentials)) {
+            session()->flash('success', 'You are logged');
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.index');
+            }
+        }
+
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user, $request->get('remember'));
