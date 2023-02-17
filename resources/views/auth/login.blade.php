@@ -26,8 +26,7 @@
                     <input type="text"
                            name="username"
                            class="form-control"
-                           placeholder="Username"
-                           value="{{ old('username') }}">
+                           placeholder="Username or email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -39,8 +38,7 @@
                     <input type="password"
                            name="password"
                            class="form-control"
-                           placeholder="Password"
-                           value="{{ old('password') }}">
+                           placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
