@@ -13,7 +13,6 @@ mix.scripts([
     'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'resources/assets/admin/plugins/select2/js/select2.full.js',
     'resources/assets/admin/js/adminlte.min.js',
-    'resources/assets/admin/js/demo.js',
     'resources/assets/admin/js/custom.js',
 ], 'public/assets/admin/js/admin.js');
 

@@ -96,11 +96,11 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button type="submit" class="btn btn-primary btn-block mb-2">Register</button>
                     </div>
                 </div>
             </form>
-            <a href="#" class="text-center mt-1">I already have a membership</a>
+            <a href="{{ route('login.show') }}" class="text-center mt-2">I already have a membership</a>
         </div>
 
     </div>

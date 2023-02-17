@@ -16,10 +16,10 @@
     </div>
 @endif
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
+@if (isset ($errors) && count($errors) > 0)
+    <div class="alert alert-danger" role="alert">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
+        <ul class="list-unstyled">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
