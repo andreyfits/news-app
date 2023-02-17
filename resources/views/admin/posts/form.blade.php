@@ -63,7 +63,7 @@
     </div>
     @if ($errors->has('image'))
         <span class="help-block">
-                <strong class="text-danger">{{ $errors->first('image') }}</strong>
+            <strong class="text-danger">{{ $errors->first('image') }}</strong>
         </span>
     @endif
 </div>

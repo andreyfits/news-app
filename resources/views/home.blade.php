@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+    @include('includes.alerts')
     <!-- Page content-->
     <div class="container">
         <div class="row">

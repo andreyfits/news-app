@@ -9,7 +9,6 @@
     @include('includes.admin.nav')
     @include('includes.admin.main-sidebar')
     @yield('content')
-    @include('includes.admin.footer')
     @include('includes.admin.control-sidebar')
 </div>
 <!-- ./wrapper -->
