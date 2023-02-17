@@ -20,19 +20,15 @@
                 <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
             </ul>
-        </div>
-        @auth
-            <div class="fs-6 text-danger ps-5 pe-3">{{ auth()->user()->name }}</div>
-            <div class="text-end">
+            @auth
+                <div class="text-danger pe-1">{{ auth()->user()->name }}</div>
                 <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
-            </div>
-        @endauth
+            @endauth
 
-        @guest
-            <div class="text-end ps-5">
+            @guest
                 <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
                 <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
-            </div>
-        @endguest
+            @endguest
+        </div>
     </div>
 </nav>
