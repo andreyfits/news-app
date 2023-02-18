@@ -18,16 +18,24 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                <li class="nav-item me-5"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
             </ul>
             @auth
-                <div class="text-danger pe-1">{{ auth()->user()->name }}</div>
-                <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        {{ auth()->user()->name }}
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('logout.perform') }}">Logout</a>
+                    </div>
+                </div>
             @endauth
 
             @guest
-                <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
-                <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
+                <a href="{{ route('login.perform') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
+                <a href="{{ route('register.perform') }}" class="btn btn-warning btn-sm">Sign-up</a>
             @endguest
         </div>
     </div>
