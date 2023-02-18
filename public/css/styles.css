@@ -11286,3 +11286,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.pic {
+    height: 90px;
+    width: 90px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
