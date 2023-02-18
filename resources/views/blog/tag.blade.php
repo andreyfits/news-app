@@ -24,7 +24,7 @@
                                         </a>
                                     </h2>
                                     <div class="small text-muted">
-                                        Posted on {{ $post->created_at->diffForHumans() }}
+                                        <i class="bi bi-clock"></i> {{ $post->created_at->diffForHumans() }}
                                     </div>
                                     <a class="badge bg-secondary text-decoration-none link-light"
                                        href="{{ route('category', $post->category->slug) }}">

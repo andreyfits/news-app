@@ -14,10 +14,12 @@
                         <!-- Post title-->
                         <h1 class="fw-bolder mb-1">{{ $post->title }}</h1>
                         <!-- Post meta content-->
-                        <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }}</div>
+                        <div class="text-muted fst-italic mb-2">
+                            <i class="bi bi-clock"></i> {{ $post->created_at->diffForHumans() }}
+                        </div>
                         <!-- Post tags-->
                         @if($post->tags->count())
-                            Tags:
+                            <i class="bi bi-tags"></i> Tags:
                             @foreach($post->tags as $tag)
                                 <a class="badge bg-secondary text-decoration-none link-light"
                                    href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
