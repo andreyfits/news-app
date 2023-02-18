@@ -82,13 +82,13 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdatePostRequest $request
      * @param int $id
      * @return RedirectResponse
      */
     public function update(UpdatePostRequest $request, int $id): RedirectResponse
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $data = $request->all();
 
         if($request->hasFile('image'))
