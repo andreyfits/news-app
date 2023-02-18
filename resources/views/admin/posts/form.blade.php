@@ -1,5 +1,5 @@
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-    <label for="title">Title</label>
+    <label for="title">Title *</label>
     <input type="text" name="title"
            class="form-control @error('title') is-invalid @enderror" id="title"
            placeholder="Title"
@@ -12,7 +12,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-    <label for="content">Content</label>
+    <label for="content">Content *</label>
     <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="content" rows="7"
               placeholder="Content ...">@if(isset($post->content))
             {{ $post->content }}
@@ -25,10 +25,12 @@
 </div>
 
 <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-    <label for="category_id">Category</label>
+    <label for="category_id">Category *</label>
     <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
         @foreach($categories as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
+            <option value="{{ $key }}" @if(isset($post)) @if($key === $post->category_id) selected @endif
+                @endif>{{ $value }}</option>
+            {{--            <option value="{{ $key }}">{{ $value }}</option>--}}
         @endforeach
     </select>
     @if ($errors->has('category_id'))
@@ -43,7 +45,9 @@
     <select name="tags[]" id="tags" class="select2" multiple="multiple"
             data-placeholder="Choose tags" style="width: 100%;">
         @foreach($tags as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
+            <option value="{{ $key }}" @if(isset($post)) @if(in_array($key, $post->tags->pluck('id')
+                                                ->all(), true)) selected @endif @endif>{{ $value }}</option>
+            {{--            <option value="{{ $key }}">{{ $value }}</option>--}}
         @endforeach
     </select>
     @if ($errors->has('tags[]'))
@@ -61,6 +65,14 @@
             <label class="custom-file-label" for="image">Choose file</label>
         </div>
     </div>
+    @if(isset($post) && $post->image !== null)
+        <img id="preview_image"
+             src="{{ $post->image }}"
+             class="img-thumbnail mt-2"
+             height="150"
+             width="150"
+             alt="..."/>
+    @endif
     @if ($errors->has('image'))
         <span class="help-block">
             <strong class="text-danger">{{ $errors->first('image') }}</strong>

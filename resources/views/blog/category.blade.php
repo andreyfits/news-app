@@ -11,15 +11,20 @@
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
-                                <a href="{{ route('post', $post->slug) }}">
-                                    <img class="card-img-top"
-                                         src="{{ asset($post->image) }}"
-                                         alt="..."/>
-                                </a>
+                                @if($post->image)
+                                    <a class="text-decoration-none link-dark" href="{{ route('post', $post->slug) }}">
+                                        <img class="card-img-top" src="{{ asset($post->image) }}" alt="..."/>
+                                    </a>
+                                @endif
                                 <div class="card-body">
+                                    <h2 class="card-title h4">
+                                        <a class="text-decoration-none link-dark"
+                                           href="{{ route('post', ['slug' => $post->slug]) }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </h2>
                                     <div class="small text-muted">{{ $post->created_at->diffForHumans() }}</div>
                                     <div class="small text-muted"><i class="bi bi-eye"></i> {{ $post->views }}</div>
-                                    <h2 class="card-title h4">{{ $post->title }}</h2>
                                     <p class="card-text">{!! Str::limit($post->content, 200) !!}</p>
                                 </div>
                             </div>

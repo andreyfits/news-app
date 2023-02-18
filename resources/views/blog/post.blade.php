@@ -23,11 +23,13 @@
                             @endforeach
                         @endif
                     </header>
-                    <!-- Preview image figure-->
-                    <figure class="mb-4">
-                        <img class="img-fluid rounded" src="{{ asset($post->image) }}" alt="..."/>
-                    </figure>
-                    <!-- Post content-->
+                    @if($post->image)
+                        <!-- Preview image figure-->
+                        <figure class="mb-4">
+                            <img class="img-fluid rounded" src="{{ asset($post->image) }}" alt="..."/>
+                        </figure>
+                        <!-- Post content-->
+                    @endif
                     <section class="mb-5">
                         <p class="fs-5 mb-4">
                             {!! $post->content !!}

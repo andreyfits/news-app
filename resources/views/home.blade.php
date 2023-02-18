@@ -13,20 +13,25 @@
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
-                                <a href="{{ route('post', ['slug' => $recent_post->slug]) }}">
-                                    <img class="card-img-top"
-                                         src="{{ asset($recent_post->image) }}"
-                                         alt="..."/>
-                                </a>
+                                @if($recent_post->image)
+                                    <a href="{{ route('post', ['slug' => $recent_post->slug]) }}">
+                                        <img class="card-img-top"
+                                             src="{{ asset($recent_post->image) }}"
+                                             alt="..."/>
+                                    </a>
+                                @endif
                                 <div class="card-body">
+                                    <h2 class="card-title h4">
+                                        <a class="text-decoration-none link-dark" href="{{ route('post', ['slug' =>
+                                        $recent_post->slug]) }}">
+                                            {{ $recent_post->title }}
+                                        </a>
+                                    </h2>
                                     <div class="small text-muted">{{ $recent_post->created_at->diffForHumans() }}</div>
-                                    <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}
-                                    </div>
-                                    <h2 class="card-title h4">{{ $recent_post->title }}</h2>
+                                    <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}</div>
                                     <p class="card-text">{!! Str::limit($recent_post->content, 200) !!}</p>
                                     <a class="btn btn-primary"
-                                       href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read
-                                        more →</a>
+                                       href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read more →</a>
                                 </div>
                             </div>
                         </div>
