@@ -17,6 +17,7 @@
                         <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }}</div>
                         <!-- Post tags-->
                         @if($post->tags->count())
+                            Tags:
                             @foreach($post->tags as $tag)
                                 <a class="badge bg-secondary text-decoration-none link-light"
                                    href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
@@ -100,7 +101,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', $post_category->slug) }}">
+                                            <a class="text-decoration-none link-dark"
+                                               href="{{ route('category', $post_category->slug) }}">
                                                 {{ $post_category->title }}
                                             </a>
                                         </li>
@@ -118,7 +120,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
+                                            <a class="text-decoration-none link-dark"
+                                               href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>

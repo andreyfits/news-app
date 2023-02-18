@@ -27,8 +27,16 @@
                                             {{ $recent_post->title }}
                                         </a>
                                     </h2>
-                                    <div class="small text-muted">{{ $recent_post->created_at->diffForHumans() }}</div>
-                                    <div class="small text-muted"><i class="bi bi-eye"></i> {{ $recent_post->views }}</div>
+                                    <div class="small text-muted">
+                                        Posted on {{ $recent_post->created_at->diffForHumans() }}
+                                    </div>
+                                    <a class="badge bg-secondary text-decoration-none link-light"
+                                       href="{{ route('category', $recent_post->category->slug) }}">
+                                        {{ $recent_post->category->title }}
+                                    </a>
+                                    <div class="small text-muted mt-1 mb-3">
+                                        <i class="bi bi-eye"></i> {{ $recent_post->views }}
+                                    </div>
                                     <p class="card-text">{!! Str::limit($recent_post->content, 200) !!}</p>
                                     <a class="btn btn-primary"
                                        href="{{ route('post', ['slug' => $recent_post->slug]) }}">Read more →</a>
@@ -61,7 +69,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('category', $post_category->slug) }}">
+                                            <a class="text-decoration-none link-dark"
+                                               href="{{ route('category', $post_category->slug) }}">
                                                 {{ $post_category->title }}
                                             </a>
                                         </li>
@@ -79,7 +88,8 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li>
-                                            <a href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
+                                            <a class="text-decoration-none link-dark"
+                                               href="{{ route('tag', $tag->slug) }}">{{ $tag->title }}</a>
                                         </li>
                                     </ul>
                                 </div>
