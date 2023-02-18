@@ -8,3 +8,7 @@ $('.nav-sidebar a').each(function () {
 });
 
 $('.select2').select2()
+
+$(document).ready(function () {
+    bsCustomFileInput.init();
+});
