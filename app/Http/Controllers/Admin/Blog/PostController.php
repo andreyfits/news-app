@@ -114,8 +114,8 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->tags()->sync([]);
 
-        foreach ($post->image as $image) {
-            $image_path = public_path() . $image;
+        if ($post->image) {
+            $image_path = public_path() . $post->image;
             if (File::exists($image_path)) {
                 File::delete($image_path);
             }
