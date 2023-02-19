@@ -4,16 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h3>Posts by category "{{ $category->title }}"</h3>
+                <h3>Search Results for "{{ $search }}"</h3>
                 <hr>
                 <div class="row">
-                    @foreach($posts as $post)
+                    @foreach($search_results as $post)
                         <div class="col-lg-6">
                             @include('includes.post')
                         </div>
                     @endforeach
                 </div>
-                {{ $posts->links()}}
+                {{ $search_results->appends(['search' => Request::get('search')])->links()}}
             </div>
 
             @include('includes.sidebar')

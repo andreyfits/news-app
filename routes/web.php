@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\SearchController;
 use App\Http\Controllers\Blog\TagController;
 use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get("/article/{slug}", [PostController::class, 'show'])->name('post');
 Route::get("/category/{slug}", [CategoryController::class, 'show'])->name('category');
 Route::get("/tag/{slug}", [TagController::class, 'show'])->name('tag');
+Route::get('/search', [SearchController::class,'index'])->name('search');
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('admin.index');

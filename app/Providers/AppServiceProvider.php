@@ -29,12 +29,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        view()->composer(['home', 'blog.post', 'blog.category', 'blog.tag'], function ($view) {
+        view()->composer(['home', 'blog.post', 'blog.category', 'blog.tag', 'blog.search'], function ($view) {
             if (Cache::has('categories')) {
                 $categories = Cache::get('categories');
             } else {
                 $categories = Category::has('posts')->withCount('posts')->orderBy('posts_count', 'desc')->get();
-                Cache::put('categories', $categories, 10);
+                Cache::put('categories', $categories, 20);
             }
 
             $view->with('popular_posts', Post::orderBy('views', 'desc')->limit(3)->get());

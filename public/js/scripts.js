@@ -5,3 +5,10 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+const links = document.querySelectorAll(".nav-link");
+links.forEach(btn => btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(".wdc-btn.active").classList.remove("active");
+    btn.classList.add("active")
+}));

@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recent_posts = Post::orderBy('created_at', 'desc')
+        $recent_posts = Post::with('category')->orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::has('posts')
             ->orderBy('title')

@@ -27,7 +27,7 @@ class CategoryController extends Controller
             ->orderBy('title')
             ->latest()
             ->get();
-        $posts = $category->posts()
+        $posts = $category->posts()->with('category')
             ->orderBy('created_at', 'desc')
             ->paginate(4);
         $tags = Tag::has('posts')

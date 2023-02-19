@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('views')->unsigned()->default(0);
             $table->timestamps();
+
+            $table->index('title');
         });
     }
 
