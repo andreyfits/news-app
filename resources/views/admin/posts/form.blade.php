@@ -28,9 +28,9 @@
     <label for="category_id">Category *</label>
     <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
         @foreach($categories as $key => $value)
-            <option value="{{ $key }}" @if(isset($post)) @if($key === $post->category_id) selected @endif
-                @endif>{{ $value }}</option>
-            {{--            <option value="{{ $key }}">{{ $value }}</option>--}}
+            <option value="{{ $key }}" @if(isset($post)) @if($key === $post->category_id) selected @endif @endif>
+                {{ $value }}
+            </option>
         @endforeach
     </select>
     @if ($errors->has('category_id'))
@@ -45,9 +45,10 @@
     <select name="tags[]" id="tags" class="select2" multiple="multiple"
             data-placeholder="Choose tags" style="width: 100%;">
         @foreach($tags as $key => $value)
-            <option value="{{ $key }}" @if(isset($post)) @if(in_array($key, $post->tags->pluck('id')
-                                                ->all(), true)) selected @endif @endif>{{ $value }}</option>
-            {{--            <option value="{{ $key }}">{{ $value }}</option>--}}
+            <option value="{{ $key }}"
+                    @if(isset($post)) @if(in_array($key, $post->tags->pluck('id')->all(), true)) selected @endif @endif>
+                {{ $value }}
+            </option>
         @endforeach
     </select>
     @if ($errors->has('tags[]'))

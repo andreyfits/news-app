@@ -24,7 +24,8 @@ class Post extends Model
         'slug',
         'content',
         'image',
-        'category_id'
+        'category_id',
+        'user_id'
     ];
 
     public function category(): BelongsTo
@@ -35,6 +36,11 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class,'post_tag','post_id','tag_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         Category::create($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'New Category created Successfully!');
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
 
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'Category updated Successfully!');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -88,11 +88,11 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         if ($category->posts()->count()) {
-            return redirect()->route('categories.index')->with('error', 'Error! The category has entries');
+            return redirect()->route('categories.index')->with('error', 'Error! The category has entries.');
         }
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('info', 'Category deleted Successfully!');
+        return redirect()->route('categories.index')->with('info', 'Category deleted successfully!');
     }
 }

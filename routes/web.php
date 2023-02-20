@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
     Route::resource('/categories', 'Blog\CategoryController');
     Route::resource('/tags', 'Blog\TagController');
     Route::resource('/posts', 'Blog\PostController');
+    Route::resource('/users','User\UserController');
 });
 
 Route::group(['middleware' => ['guest']], function () {

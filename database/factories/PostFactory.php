@@ -32,6 +32,7 @@ class PostFactory extends Factory
             'content' => $this->faker->paragraph(8),
             'image' => $this->faker->imageUrl(850,350),
             'category_id' => Category::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

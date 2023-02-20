@@ -12,6 +12,7 @@
                 {{ $post->title }}
             </a>
         </h2>
+        Posted by <strong>{{ $post->user->name }}</strong>
         <div class="small text-muted">
             <i class="bi bi-clock"></i> {{ $post->created_at->diffForHumans() }}
         </div>
@@ -22,7 +23,7 @@
         <div class="small text-muted mt-1 mb-3">
             <i class="bi bi-eye"></i> {{ $post->views }}
         </div>
-
         <p class="card-text">{!! Str::limit($post->content, 200) !!}</p>
+        <a class="btn btn-primary" href="{{ route('post', ['slug' => $post->slug]) }}">Read more →</a>
     </div>
 </div>

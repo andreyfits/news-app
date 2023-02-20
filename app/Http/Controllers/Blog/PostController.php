@@ -21,6 +21,7 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)
+            ->with('user')
             ->orderBy('created_at', 'desc')
             ->firstOrFail();
         $post_categories = Category::has('posts')

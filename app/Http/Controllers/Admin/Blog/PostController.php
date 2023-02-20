@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
@@ -51,6 +52,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request): RedirectResponse
     {
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
 
         if ($data['image']) {
             $image_path = uploadImage($data['image'], 'images/blog');
@@ -60,7 +62,7 @@ class PostController extends Controller
         $post = Post::create($data);
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.index')->with('success', 'New Post created Successfully!');
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
 
     }
 
@@ -100,7 +102,7 @@ class PostController extends Controller
         $post->update($data);
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.index')->with('success', 'New Post created Successfully!');
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
     }
 
     /**
@@ -123,6 +125,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Post deleted Successfully!');
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
 }

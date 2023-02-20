@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('image')->nullable();
             $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('views')->unsigned()->default(0);
             $table->timestamps();
 

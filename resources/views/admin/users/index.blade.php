@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Posts</h1>
+                        <h1>Users</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -28,47 +28,45 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">List of posts</h3>
+                                <h3 class="card-title">List of users</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('includes.admin.alerts')
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Add new</a>
-                                @if (count($posts))
+                                <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Add new</a>
+                                @if (count($users))
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover text-nowrap">
                                             <thead>
                                             <tr>
                                                 <th style="width: 30px">#</th>
-                                                <th>Title</th>
-                                                <th>Category</th>
-                                                <th>Tags</th>
-                                                <th>Author</th>
-                                                <th>Date</th>
+                                                <th>Name</th>
+                                                <th>Username</th>
+                                                <th>Email</th>
+                                                <th>Is Admin</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($posts as $post)
+                                            @foreach($users as $user)
                                                 <tr>
-                                                    <td>{{ $post->id }}</td>
-                                                    <td>{{ $post->title }}</td>
-                                                    <td>{{ $post->category->title }}</td>
-                                                    <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
-                                                    <td>{{ $post->user->name }}</td>
-                                                    <td>{{ $post->created_at }}</td>
+                                                    <td>{{ $user->id }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->username }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->is_admin }}</td>
                                                     <td>
-                                                        <form action="{{ route('posts.destroy', $post->id) }}"
-                                                              method="post"
-                                                              class="float-left">
-                                                            <a href="{{ route('posts.edit', $post->id) }}"
+                                                        <form
+                                                            action="{{ route('users.destroy', $user->id) }}"
+                                                            method="post" class="float-left">
+                                                            <a href="{{ route('users.edit', $user->id) }}"
                                                                class="btn btn-primary btn-sm float-left mr-1">
                                                                 <i class="fas fa-pencil-alt"></i>
                                                             </a>
                                                             @csrf @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
                                                                     onclick="return confirm('Do you really want to ' +
-                                                                     'delete post!')">
+                                                                     'delete user!')">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </form>
@@ -79,12 +77,12 @@
                                         </table>
                                     </div>
                                 @else
-                                    <p>There are no posts yet...</p>
+                                    <p>There are no users yet...</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                {!! $posts->links() !!}
+                                {!! $users->links() !!}
                             </div>
                         </div>
                         <!-- /.card -->

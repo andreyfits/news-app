@@ -48,7 +48,7 @@ class TagController extends Controller
     {
         Tag::create($request->all());
 
-        return redirect()->route('tags.index')->with('success', 'New Tag created Successfully!');
+        return redirect()->route('tags.index')->with('success', 'Tag created successfully!');
     }
 
     /**
@@ -76,7 +76,7 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->update($request->all());
 
-        return redirect()->route('tags.index')->with('success', 'Tag updated Successfully!');
+        return redirect()->route('tags.index')->with('success', 'Tag updated successfully!');
 
     }
 
@@ -91,11 +91,11 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id);
 
         if ($tag->posts()->count()) {
-            return redirect()->route('tags.index')->with('error', 'Error! The tag has entries');
+            return redirect()->route('tags.index')->with('error', 'Error! The tag has entries.');
         }
 
         $tag->delete();
 
-        return redirect()->route('tags.index')->with('info', 'Tag deleted Successfully!');
+        return redirect()->route('tags.index')->with('info', 'Tag deleted successfully!');
     }
 }

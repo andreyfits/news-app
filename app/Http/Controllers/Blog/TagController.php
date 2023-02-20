@@ -26,7 +26,9 @@ class TagController extends Controller
         $tags = Tag::has('posts')
             ->orderBy('title')
             ->get();
-        $posts = $tag->posts()->with('category')
+        $posts = $tag->posts()
+            ->with('category')
+            ->with('user')
             ->orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::has('posts')
