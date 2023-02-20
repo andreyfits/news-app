@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,14 +19,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+//        User::factory(10)->create();
         Post::factory(10)->create();
         Category::factory(10)->create();
         Tag::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('users')->insert([
+            'id' => 11,
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => '$2a$12$e8WjmzwonWFEaBMhyN7CDu7W49adqhpaMoHOYObx5v3llDNxAotnW',
+            'is_admin' => 1
+        ]);
     }
 }
