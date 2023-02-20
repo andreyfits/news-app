@@ -1,31 +1,35 @@
-# news-app
-News application on the Laravel
+## Features
+- Manage articles and categories
+- Article tags management
+- Search by title category
+- User management.
+- WYSIWYG Editor
 
 ## Requirements
 - Requires a minimum PHP version of 8.0
 
-
 ### Installation
+
+1. Clone project
 
 Requires Composer.
 
-
-1. Install the dependencies using composer
+2. Install the dependencies using composer
 
 ```sh
 $ cd your-project-directory
 $ composer install
 ```
 
-2. Open .env.example and save it as ".env"
+3. Open .env.example and save it as ".env"
 
-3. Generate application key using:
+4. Generate application key using:
 
 ```sh
 $ php artisan key:generate
 ```
 
-4. Create a mysql database and enter database credentials in your .env file
+5. Create a mysql database and enter database credentials in your .env file
 
 ```sh
 DB_CONNECTION=mysql
@@ -36,31 +40,25 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-5. Run the migration:
+6. Run the migration:
 
 ```sh
 $ php artisan migrate
 ```
 
-6. Fill DB fake data:
+7. Fill DB fake data:
 
 ```sh
-$ php artisan db:seed --class=CategorySeeder
-```
-```sh
-$ php artisan db:seed --class=PostSeeder
-```
-```sh
-$ php artisan db:seed --class=TagSeeder
+$ php artisan db:seed 
 ```
 
-6. Start the development server:
+8. Start the development server:
 
 ```sh
 $ php artisan serve
 ```
 
-7. Install Node.js and after that install necessary packages for frontend
+9. Install Node.js and after that install necessary packages for frontend
 
 ```
 $ npm install
@@ -69,5 +67,8 @@ $ npm install
 $ npx mix
 ```
 
-8. Page for the management blog post:
- - /admin
+If you want to management blog post you should log in in the admin panel. You can click **Login** button on the main page in the nav menu and log in with this credentials
+
+### Credentials for admin panel:
+- email: admin@example.com / admin
+- password: password
