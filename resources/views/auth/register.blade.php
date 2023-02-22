@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <form action="{{ route('register.perform') }}" method="post">
-                {{ csrf_field() }}
+                @csrf
 
                 @if ($errors->has('name'))
                     <strong class="text-danger">{{ $errors->first('name') }}</strong>

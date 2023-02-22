@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
             <form action="{{ route('login.perform') }}" method="post">
-                {{ csrf_field() }}
+                @csrf
 
                 @include('includes.alerts')
 
