@@ -33,11 +33,17 @@ class AppServiceProvider extends ServiceProvider
             if (Cache::has('categories')) {
                 $categories = Cache::get('categories');
             } else {
-                $categories = Category::has('posts')->withCount('posts')->orderBy('posts_count', 'desc')->get();
+                $categories = Category::with('posts')
+                    ->withCount('posts')
+                    ->whereHas('posts', function ($query) {
+                        $query->where('active', 1);
+                    })
+                    ->orderBy('posts_count', 'desc')
+                    ->get();
                 Cache::put('categories', $categories, 20);
             }
 
-            $view->with('popular_posts', Post::orderBy('views', 'desc')->limit(3)->get());
+            $view->with('popular_posts', Post::where('active', 1)->orderBy('views', 'desc')->limit(3)->get());
             $view->with('categories', $categories);
         });
     }

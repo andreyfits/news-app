@@ -15,10 +15,15 @@ class SearchController extends Controller
         $search = $request->s;
 
         if ($search) {
-            $query = Post::with('category', 'tags')->where('title', 'like', "%$search%");
+            $query = Post::with('category', 'tags')
+                ->where('title', 'like', "%$search%")
+                ->where('active', 1);
         }
 
-        $tags = Tag::has('posts')
+        $tags = Tag::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->get();
         $search_results = $query->paginate(4);

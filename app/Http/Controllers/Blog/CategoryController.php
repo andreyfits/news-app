@@ -21,18 +21,28 @@ class CategoryController extends Controller
     {
         $category = Category::with('posts')
             ->where('slug', $slug)
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->firstOrFail();
-        $post_categories = Category::has('posts')
+        $post_categories = Category::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->latest()
             ->get();
         $posts = $category->posts()
-            ->with('category')
+            ->with('category', 'user')
             ->with('user')
+            ->where('active','1')
             ->orderBy('created_at', 'desc')
             ->paginate(4);
-        $tags = Tag::has('posts')
+        $tags = Tag::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->get();
 

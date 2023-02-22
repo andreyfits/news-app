@@ -45,6 +45,7 @@
                                                 <th>Tags</th>
                                                 <th>Author</th>
                                                 <th>Date</th>
+                                                <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -52,15 +53,27 @@
                                             @foreach($posts as $post)
                                                 <tr>
                                                     <td>{{ $post->id }}</td>
-                                                    <td>{{ $post->title }}</td>
+                                                    <td>{{ Str::limit($post->title, 50) }}</td>
                                                     <td>{{ $post->category->title }}</td>
                                                     <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                                     <td>{{ $post->user->name }}</td>
                                                     <td>{{ $post->created_at }}</td>
                                                     <td>
+                                                        @if($post->active === 1)
+                                                            <span class="badge bg-success">Active</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Deactivated</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
                                                         <form action="{{ route('posts.destroy', $post->id) }}"
                                                               method="post"
                                                               class="float-left">
+                                                            <a href="{{ url('article') }}/{{$post->slug}}"
+                                                               class="btn btn-info btn-sm float-left mr-1"
+                                                               target="_blank">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
                                                             <a href="{{ route('posts.edit', $post->id) }}"
                                                                class="btn btn-primary btn-sm float-left mr-1">
                                                                 <i class="fas fa-pencil-alt"></i>

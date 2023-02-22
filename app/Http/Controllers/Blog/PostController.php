@@ -22,13 +22,20 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)
             ->with('user')
+            ->where('active', 1)
             ->orderBy('created_at', 'desc')
             ->firstOrFail();
-        $post_categories = Category::has('posts')
+        $post_categories = Category::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->latest()
             ->get();
-        $tags = Tag::has('posts')
+        $tags = Tag::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->latest()
             ->get();

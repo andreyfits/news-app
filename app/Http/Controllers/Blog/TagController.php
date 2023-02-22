@@ -23,12 +23,16 @@ class TagController extends Controller
             ->where('slug', $slug)
             ->orderBy('title')
             ->firstOrFail();
-        $tags = Tag::has('posts')
+        $tags = Tag::with('posts')
+            ->whereHas('posts', function ($query) {
+                $query->where('active', 1);
+            })
             ->orderBy('title')
             ->get();
         $posts = $tag->posts()
             ->with('category')
             ->with('user')
+            ->where('active', '1')
             ->orderBy('created_at', 'desc')
             ->paginate(4);
         $post_categories = Category::has('posts')
