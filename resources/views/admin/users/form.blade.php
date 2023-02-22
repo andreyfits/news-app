@@ -3,7 +3,7 @@
     <input type="text" name="name"
            class="form-control @error('name') is-invalid @enderror" id="name"
            placeholder="Name"
-           @if(isset($user->name))value="{{ $user->name }} @else value="{{ old('name') }}" @endif">
+           @if(isset($user->name))value="{{ $user->name }}" @else value="{{ old('name') }}" @endif>
     @if ($errors->has('name'))
         <span class="help-block">
             <strong class="text-danger">{{ $errors->first('name') }}</strong>
@@ -16,7 +16,7 @@
     <input type="text" name="username"
            class="form-control @error('username') is-invalid @enderror" id="username"
            placeholder="Username"
-           @if(isset($user->username))value="{{ $user->username }} @else value="{{ old('username') }}"@endif">
+           @if(isset($user->username))value="{{ $user->username }}" @else value="{{ old('username') }}" @endif>
     @if ($errors->has('username'))
         <span class="help-block">
             <strong class="text-danger">{{ $errors->first('username') }}</strong>
@@ -29,7 +29,7 @@
     <input type="email" name="email"
            class="form-control @error('email') is-invalid @enderror" id="email"
            placeholder="Email"
-           @if(isset($user->email))value="{{ $user->email }} @else value="{{ old('email') }}"@endif">
+           @if(isset($user->email))value="{{ $user->email }}" @else value="{{ old('email') }}"@endif>
     @if ($errors->has('email'))
         <span class="help-block">
             <strong class="text-danger">{{ $errors->first('email') }}</strong>
@@ -66,17 +66,9 @@
 <div class="form-group">
     <label>Is Admin: *</label>
     <label class="radio-inline">
-        <input id="yes" name="is_admin" type="radio" value="1" @if(isset($user->is_admin)) {{ ($user->is_admin
-        ===
-        1) ?
-        "checked" :
-        "" }} @endif> Yes
+        <input id="yes" name="is_admin" type="radio" value="1" @checked($user->is_admin === 1)> Yes
     </label>
     <label class="radio-inline">
-        <input id="no" name="is_admin" type="radio" value="0" @if(isset($user->is_admin)) {{ ($user->is_admin
-        ===
-        0) ?
-        "checked" :
-        "" }} @endif> No
+        <input id="no" name="is_admin" type="radio" value="0" @checked($user->is_admin === 0)> No
     </label>
 </div>
