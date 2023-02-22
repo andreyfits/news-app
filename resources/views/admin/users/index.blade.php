@@ -54,17 +54,23 @@
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->username }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->is_admin }}</td>
                                                     <td>
-                                                        <form
-                                                            action="{{ route('users.destroy', $user->id) }}"
-                                                            method="post" class="float-left">
+                                                        @if($user->is_admin === 1)
+                                                            <span class="badge bg-success">Yes</span>
+                                                        @else
+                                                            <span class="badge bg-danger">No</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <form action="{{ route('users.destroy', $user->id) }}"
+                                                              method="post" class="float-left">
                                                             <a href="{{ route('users.edit', $user->id) }}"
                                                                class="btn btn-primary btn-sm float-left mr-1">
                                                                 <i class="fas fa-pencil-alt"></i>
                                                             </a>
                                                             @csrf @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                            <button type="submit"
+                                                                    class="btn btn-danger btn-sm"
                                                                     onclick="return confirm('Do you really want to ' +
                                                                      'delete user!')">
                                                                 <i class="fas fa-trash-alt"></i>
