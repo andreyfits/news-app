@@ -69,6 +69,11 @@
         <input id="yes" name="is_admin" type="radio" value="1" @checked($user->is_admin === 1)> Yes
     </label>
     <label class="radio-inline">
-        <input id="no" name="is_admin" type="radio" value="0" @checked($user->is_admin === 0)> No
+        <input id="no" name="is_admin" type="radio" value="0" checked @checked($user->is_admin === 0)> No
     </label>
+    @if ($errors->has('is_admin'))
+        <div class="help-block">
+            <strong class="text-danger">{{ $errors->first('is_admin') }}</strong>
+        </div>
+    @endif
 </div>
